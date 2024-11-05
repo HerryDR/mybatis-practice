@@ -69,4 +69,11 @@ public interface CarMapper {
      * @return
      */
     int deleteBatchByForeach2(@Param("ids") Long[] ids);
+
+    /**
+     * 批量添加，使用foreach标签
+     * @param cars
+     * @return
+     */
+    int insertBatchByForeach(@Param("cars") List<Car> cars);
 }

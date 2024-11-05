@@ -97,4 +97,11 @@ close：foreach标签中所有内容的结束
             id = #{id}
         </foreach>
     </delete>
+
+    <insert id="insertBatchByForeach">
+        insert into t_car values
+        <foreach collection="cars" item="car" separator=",">
+            (null,#{car.carNum},#{car.brand},#{car.guidePrice},#{car.produceTime},#{car.carType})
+        </foreach>
+    </insert>
 </mapper>

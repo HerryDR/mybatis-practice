@@ -5,6 +5,7 @@ import com.jsf.mybatis.pojo.Car;
 import com.jsf.mybatis.utils.SqlSessionUtil;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -67,6 +68,18 @@ public class CarMapperTest {
         CarMapper mapper = SqlSessionUtil.openSession().getMapper(CarMapper.class);
         int count = mapper.deleteBatchByForeach2(new Long[]{9L, 10L, 15L});
         System.out.println("删除了几条记录：" + count);
+        SqlSessionUtil.openSession().commit();
+    }
+
+    @Test
+    public void testInsertBatchByForeach(){
+        CarMapper mapper = SqlSessionUtil.openSession().getMapper(CarMapper.class);
+        Car car1 = new Car(null, "2001", "兰博基尼", 100.0, "1998-10-11", "燃油车");
+        Car car2 = new Car(null, "2001", "兰博基尼", 100.0, "1998-10-11", "燃油车");
+        Car car3 = new Car(null, "2001", "兰博基尼", 100.0, "1998-10-11", "燃油车");
+        List<Car> cars = Arrays.asList(car1, car2, car3);
+        int count = mapper.insertBatchByForeach(cars);
+        System.out.println("插入了几条记录" + count);
         SqlSessionUtil.openSession().commit();
     }
 }

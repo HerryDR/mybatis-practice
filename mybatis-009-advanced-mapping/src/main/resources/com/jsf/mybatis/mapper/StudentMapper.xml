@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jsf.mybatis.mapper.StudentMapper">
+
+    <resultMap id="studentResultMap" type="Student">
+        <id property="sid" column="sid"/>
+        <result property="sname" column="sname"/>
+        <association property="clazz"
+                              select="com.jsf.mybatis.mapper.ClazzMapper.selectByCid"
+                              column="cid"
+                              />
+
+    </resultMap>
+
+    <select id="selectBySid" resultMap="studentResultMap">
+        select s.* from t_stu s where sid = #{sid}
+    </select>
+
+    <select id="selectByCid" resultType="Student">
+        select * from t_stu where cid = #{cid}
+    </select>
+
+</mapper>
