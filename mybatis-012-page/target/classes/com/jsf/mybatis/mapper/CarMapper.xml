@@ -4,10 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jsf.mybatis.mapper.CarMapper">
-    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 
-    <select id="selectById" resultType="Car">
-        select * from t_car where id = #{id}
+    <select id="selectAllByPage" resultType="Car">
+        select * from t_car limit #{startIndex},#{pageSize}
     </select>
 
+    <select id="selectAll" resultType="Car">
+        select * from t_car
+    </select>
 </mapper>
